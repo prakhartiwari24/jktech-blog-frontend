@@ -1,6 +1,41 @@
-# Getting Started with Create React App
+```bash
+Installation
+git clone https://github.com/prakhartiwari24/jktech-blog-frontend.git
+cd jktech-blog-frontend
+npm install
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```bash
+Create a .env file in the root directory:
+REACT_APP_API_URL=http://localhost:5002
+```
+
+```bash
+Integration Tests (Cypress)
+# Run Cypress test runner
+npx cypress open
+
+npx cypress run
+```
+
+```bash
+Pages
+/login: Login with Google, Facebook, or credentials
+
+/dashboard: View and create blog posts
+
+/create: Form to create a new post
+
+/post/:id: View a single post in detail
+```
+
+```bash
+Docker Setup
+
+docker build -t jktech-blog-frontend .
+
+docker run -p 3000:3000 --env-file .env jktech-blog-frontend
+```
 
 ## Available Scripts
 

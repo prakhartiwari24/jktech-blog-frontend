@@ -1,81 +1,119 @@
+
+# JK Tech Blog Frontend Assignment
+
+
+This repository contains the frontend application for the JK Tech Blog platform. It is a responsive and modern React app that supports authentication via Google and Facebook, displays a dashboard of user-created blog posts, and allows for creation and detailed viewing of posts.
+
+The app supports Google and Facebook OAuth login, shows a dashboard of blog posts, allows post creation, and provides detailed views. Styled using Material UI and tested with Cypress and Jest, the application also supports containerized deployment using Docker.
+
+Built using React with Typescript, Material-UI for styling, Cypress for integration testing, and Docker for deployment.
+
+## Features
+
+- Login via Google, Facebook (OAuth + JWT)
+
+- Create, view, and explore blog posts
+
+- Responsive, clean UI with Material-UI
+
+- Cypress and Jest based testing
+
+- Docker support for containerization
+
+- Auth-protected routes for dashboard, post creation, and post details
+
+
+##  Tech Stack
+
+- React – Frontend JavaScript library
+
+- TypeScript – Type-safe development
+- React Router v6 – Client-side routing
+- Material-UI – UI components
+- Axios – API requests
+- Cypress – Integration testing
+- Jest - Unit testing
+- Docker –Containerized frontend deployment
+
+
+## Clone Repo
 ```bash
-Installation
 git clone https://github.com/prakhartiwari24/jktech-blog-frontend.git
 cd jktech-blog-frontend
+```
+
+## Installing Dependencies
+```bash
 npm install
 ```
 
+## Configure Environment
+**Sets the base URL for backend API requests.**
 ```bash
-Create a .env file in the root directory:
+# Create .env in root
 REACT_APP_API_URL=http://localhost:5002
 ```
 
+
+# Running App
 ```bash
-Integration Tests (Cypress)
-# Run Cypress test runner
+# Development mode
+npm start
+
+# Build for production
+npm run build
+```
+
+## Page Routes
+- `/login` - Login with Google, Facebook, or credentials
+- `/dashboard` - View list of created posts
+- `/create` - 	Create a new blog post
+- `/post/:id` - View a post in detail
+
+## API Integration
+The frontend interacts with the backend via RESTful endpoints:
+- **Authentication**: 
+  - Redirects to /auth/google or /auth/facebook
+  - Stores JWT from /auth/google/callback or /auth/facebook/callback in local storage.
+- **Posts**
+  - `POST /posts`: Create a post (JWT required).
+  - `GET /posts`: Fetch user posts (JWT required).
+  - `GET /posts/:id`: Fetch a public post.
+
+### Example API Call
+```bash
+import {axios} from "axios";
+
+ axios.post(`${API_URL}/posts`,
+        { title, body },
+        { headers: { Authorization: `Bearer ${token}` } }
+      ).then(() => navigate("/dashboard"))
+      .catch((err) => console.error("Failed to create post", err));
+```
+
+
+## Testing
+### Unit & Integration Testing (Cypress And Jest)
+```bash
+# Cypress (integration tests)
 npx cypress open
 
-npx cypress run
+# Jest (unit tests)
+npm run test
 ```
-
+## Docker Setup
 ```bash
-Pages
-/login: Login with Google, Facebook, or credentials
-
-/dashboard: View and create blog posts
-
-/create: Form to create a new post
-
-/post/:id: View a single post in detail
-```
-
-```bash
-Docker Setup
-
 docker build -t jktech-blog-frontend .
 
-docker run -p 3000:3000 --env-file .env jktech-blog-frontend
 ```
 
-## Available Scripts
+## Run Container
+```bash
+docker run -p 3000:3000 --env-file .env jktech-blog-frontend
 
-In the project directory, you can run:
+```
 
-### `npm start`
+## Author
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Prakhar Tiwari
+[email](mailto:prakhartiwari20@gmail.com)
